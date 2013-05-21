@@ -20,5 +20,5 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
-#add_lunch_combo pa_viva-userdebug
-#add_lunch_combo pa_viva-eng
+#add_lunch_combo pa_front-userdebug
+#add_lunch_combo pa_front-eng

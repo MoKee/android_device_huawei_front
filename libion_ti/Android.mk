@@ -1,6 +1,6 @@
 LOCAL_PATH:= $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),viva)
+ifeq ($(TARGET_DEVICE),front)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := ion.c

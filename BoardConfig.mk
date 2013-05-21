@@ -34,7 +34,7 @@ BOARD_OPENCORE_FLAGS := -DHARDWARE_OMX=1
 COMMON_GLOBAL_CFLAGS += -DENHANCED_DOMX
 ENHANCED_DOMX := true
 
-# U9200 uses omap enhancement!
+# U9500 uses omap enhancement!
 OMAP_ENHANCEMENT := true
 COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DOMAP_ENHANCEMENT_BURST_CAPTURE
 
@@ -51,14 +51,14 @@ BOARD_USES_GENERIC_AUDIO := false
 #BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 # inherit from the proprietary version
--include vendor/huawei/viva/BoardConfigVendor.mk
+-include vendor/huawei/front/BoardConfigVendor.mk
 
 # Target arch settings
 TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := omap4
 TARGET_BOARD_PLATFORM_GPU := POWERVR_SGX540_120
-TARGET_BOOTLOADER_BOARD_NAME := viva
+TARGET_BOOTLOADER_BOARD_NAME := front
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
@@ -76,14 +76,14 @@ TARGET_HAS_WAITFORVSYNC := true
 BOARD_USE_CUSTOM_LIBION := true
 
 # Kernel/Ramdisk
-BOARD_KERNEL_CMDLINE := console=ttyGS2,115200n8 mem=1G vmalloc=768M vram=16M omapfb.vram=0:8M omap_wdt.timer_margin=30 mmcparts=mmcblk0:p15(splash) androidboot.hardware=viva
+BOARD_KERNEL_CMDLINE := console=ttyGS2,115200n8 mem=1G vmalloc=768M vram=16M omapfb.vram=0:8M omap_wdt.timer_margin=30 mmcparts=mmcblk0:p15(splash) androidboot.hardware=front
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_PREBUILT_KERNEL := device/huawei/viva/kernel
+TARGET_PREBUILT_KERNEL := device/huawei/front/kernel
 TARGET_PROVIDES_INIT_TARGET_RC := true
 
 # EGL
-BOARD_EGL_CFG := device/huawei/viva/egl.cfg
+BOARD_EGL_CFG := device/huawei/front/egl.cfg
 USE_OPENGL_RENDERER := true
 
 # Lights
@@ -112,7 +112,7 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
 
 # RIL
-TARGET_PROVIDES_LIBRIL := vendor/huawei/viva/proprietary/lib/libxgold-ril.so
+TARGET_PROVIDES_LIBRIL := vendor/huawei/front/proprietary/lib/libxgold-ril.so
 
 # Webkit
 ENABLE_WEBGL := true
@@ -138,7 +138,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 #TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 DEVICE_RESOLUTION := 540x960
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TARGET_RECOVERY_INITRC := device/huawei/viva/recovery/init.twrp.rc
+TARGET_RECOVERY_INITRC := device/huawei/front/recovery/init.twrp.rc
 RECOVERY_SDCARD_ON_DATA := true
 TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"

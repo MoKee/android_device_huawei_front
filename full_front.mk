@@ -16,19 +16,19 @@
 # limitations under the License.
 #
 
-$(call inherit-product-if-exists, vendor/huawei/viva/viva-vendor.mk)
+$(call inherit-product-if-exists, vendor/huawei/front/front-vendor.mk)
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
-DEVICE_FOLDER := device/huawei/viva
+DEVICE_FOLDER := device/huawei/front
 
-# This file includes all definitions that apply to ALL viva devices, and
-# are also specific to viva devices
+# This file includes all definitions that apply to ALL front devices, and
+# are also specific to front devices
 #
 # Everything in this directory will become public
 
-DEVICE_PACKAGE_OVERLAYS := device/huawei/viva/overlay
+DEVICE_PACKAGE_OVERLAYS := device/huawei/front/overlay
 
 #Camera
 PRODUCT_PACKAGES += \
@@ -46,49 +46,49 @@ PRODUCT_PACKAGES += \
 
 # PowerHAL
 PRODUCT_PACKAGES += \
-	audio.primary.viva \
-	power.viva \
-	hwcomposer.viva \
+	audio.primary.front \
+	power.front \
+	hwcomposer.front \
 	libion_ti
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-	device/huawei/viva/ramdisk/init:root/init \
-	device/huawei/viva/ramdisk/init.rc:root/init.rc \
-	device/huawei/viva/ramdisk/init.viva.rc:root/init.viva.rc \
-	device/huawei/viva/ramdisk/init.viva.usb.rc:root/init.viva.usb.rc \
-	device/huawei/viva/ramdisk/ueventd.viva.rc:root/ueventd.viva.rc
+	device/huawei/front/ramdisk/init:root/init \
+	device/huawei/front/ramdisk/init.rc:root/init.rc \
+	device/huawei/front/ramdisk/init.front.rc:root/init.front.rc \
+	device/huawei/front/ramdisk/init.front.usb.rc:root/init.front.usb.rc \
+	device/huawei/front/ramdisk/ueventd.front.rc:root/ueventd.front.rc
 
 # Media / Audio
 PRODUCT_COPY_FILES += \
-	device/huawei/viva/media/media_profiles.xml:system/etc/media_profiles.xml \
-	device/huawei/viva/media/media_codecs.xml:system/etc/media_codecs.xml \
-	device/huawei/viva/audio/audio_policy.conf:system/etc/audio_policy.conf \
-	device/huawei/viva/audio/huawei/audio/cm_viva_audio_config.conf:system/etc/huawei/audio/cm_viva_audio_config.conf \
-	device/huawei/viva/audio/huawei/audio/viva_audio_config.conf:system/etc/huawei/audio/viva_audio_config.conf \
-	device/huawei/viva/audio/huawei/audio/viva_factory_audio_config.conf:system/etc/huawei/audio/viva_factory_audio_config.conf \
-	device/huawei/viva/audio/huawei/audio/U9200_audio_config.conf:system/etc/huawei/audio/U9200_audio_config.conf \
-	device/huawei/viva/audio/huawei/audio/U9200_factory_audio_config.conf:system/etc/huawei/audio/U9200_factory_audio_config.conf
+	device/huawei/front/media/media_profiles.xml:system/etc/media_profiles.xml \
+	device/huawei/front/media/media_codecs.xml:system/etc/media_codecs.xml \
+	device/huawei/front/audio/audio_policy.conf:system/etc/audio_policy.conf \
+	device/huawei/front/audio/huawei/audio/cm_front_audio_config.conf:system/etc/huawei/audio/cm_front_audio_config.conf \
+	device/huawei/front/audio/huawei/audio/front_audio_config.conf:system/etc/huawei/audio/front_audio_config.conf \
+	device/huawei/front/audio/huawei/audio/front_factory_audio_config.conf:system/etc/huawei/audio/front_factory_audio_config.conf \
+	device/huawei/front/audio/huawei/audio/U9500_audio_config.conf:system/etc/huawei/audio/U9500_audio_config.conf \
+	device/huawei/front/audio/huawei/audio/U9500_factory_audio_config.conf:system/etc/huawei/audio/U9500_factory_audio_config.conf
 
 # GPS
 PRODUCT_COPY_FILES += \
-	device/huawei/viva/gps/gps.conf:system/etc/gps.conf \
-	device/huawei/viva/gps/gpsconfig.xml:system/etc/gpsconfig.xml
+	device/huawei/front/gps/gps.conf:system/etc/gps.conf \
+	device/huawei/front/gps/gpsconfig.xml:system/etc/gpsconfig.xml
 
 # BT
 PRODUCT_COPY_FILES += \
-	device/huawei/viva/bluetooth/audio.conf:system/etc/bluetooth/audio.conf \
-	device/huawei/viva/bluetooth/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
-	device/huawei/viva/bluetooth/BCM4330B1.hcd:system/etc/bluetooth/BCM4330B1.hcd \
-	device/huawei/viva/bluetooth/blacklist.conf:system/etc/bluetooth/blacklist.conf \
-	device/huawei/viva/bluetooth/init.bcm.chip_off.sh:system/etc/bluetooth/init.bcm.chip_off.sh \
-	device/huawei/viva/bluetooth/init.bcm.chip_on.sh:system/etc/bluetooth/init.bcm.chip_on.sh \
-	device/huawei/viva/bluetooth/input.conf:system/etc/bluetooth/input.conf \
-	device/huawei/viva/bluetooth/network.conf:system/etc/bluetooth/network.conf
+	device/huawei/front/bluetooth/audio.conf:system/etc/bluetooth/audio.conf \
+	device/huawei/front/bluetooth/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
+	device/huawei/front/bluetooth/BCM4330B1.hcd:system/etc/bluetooth/BCM4330B1.hcd \
+	device/huawei/front/bluetooth/blacklist.conf:system/etc/bluetooth/blacklist.conf \
+	device/huawei/front/bluetooth/init.bcm.chip_off.sh:system/etc/bluetooth/init.bcm.chip_off.sh \
+	device/huawei/front/bluetooth/init.bcm.chip_on.sh:system/etc/bluetooth/init.bcm.chip_on.sh \
+	device/huawei/front/bluetooth/input.conf:system/etc/bluetooth/input.conf \
+	device/huawei/front/bluetooth/network.conf:system/etc/bluetooth/network.conf
 
 # Vold
 PRODUCT_COPY_FILES += \
-	device/huawei/viva/vold.fstab:system/etc/vold.fstab
+	device/huawei/front/vold.fstab:system/etc/vold.fstab
 
 # Torch
 PRODUCT_PACKAGES += \
@@ -110,14 +110,14 @@ PRODUCT_PACKAGES += \
 
 # Key maps
 PRODUCT_COPY_FILES += \
-	device/huawei/viva/usr/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl \
-	device/huawei/viva/usr/omap4-keypad.kcm:system/usr/keychars/omap4-keypad.kcm \
-	device/huawei/viva/usr/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl
+	device/huawei/front/usr/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl \
+	device/huawei/front/usr/omap4-keypad.kcm:system/usr/keychars/omap4-keypad.kcm \
+	device/huawei/front/usr/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl
 
 # Input device calibration files
 PRODUCT_COPY_FILES += \
-	device/huawei/viva/usr/syn_tm12xx_ts_1.idc:system/usr/idc/syn_tm12xx_ts_1.idc \
-	device/huawei/viva/usr/syn_tm12xx_ts_2.idc:system/usr/idc/syn_tm12xx_ts_2.idc
+	device/huawei/front/usr/syn_tm12xx_ts_1.idc:system/usr/idc/syn_tm12xx_ts_1.idc \
+	device/huawei/front/usr/syn_tm12xx_ts_2.idc:system/usr/idc/syn_tm12xx_ts_2.idc
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -165,7 +165,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.setupwizard.enable_bypass=1 \
 	dalvik.vm.dexopt-flags=m=y \
-	ro.product.board=U9200
+	ro.product.board=U9500
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.secure=0

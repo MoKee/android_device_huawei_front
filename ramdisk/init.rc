@@ -4,7 +4,7 @@
 # This is a common source of Android security bugs.
 #
 
-import /init.viva.rc
+import /init.front.rc
 
 
 on early-init

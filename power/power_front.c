@@ -20,7 +20,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-#define LOG_TAG "U9200 PowerHAL"
+#define LOG_TAG "U9500 PowerHAL"
 #include <utils/Log.h>
 
 #include <hardware/hardware.h>
@@ -37,7 +37,7 @@ static int freq_num;
 static char *freq_list[MAX_FREQ_NUMBER];
 static char *max_freq, *nom_freq;
 
-struct viva_power_module {
+struct front_power_module {
     struct power_module base;
     pthread_mutex_t lock;
     int boostpulse_fd;
@@ -116,10 +116,10 @@ static int sysfs_read(char *path, char *s, int s_size)
     return len;
 }
 
-static void viva_power_init(struct power_module *module)
+static void front_power_init(struct power_module *module)
 {
-    struct viva_power_module *viva =
-                                   (struct viva_power_module *) module;
+    struct front_power_module *front =
+                                   (struct front_power_module *) module;
     int tmp;
     char freq_buf[MAX_FREQ_NUMBER*10];
 
@@ -145,38 +145,38 @@ static void viva_power_init(struct power_module *module)
     sysfs_write(CPUFREQ_INTERACTIVE "above_hispeed_delay", "100000");
 
     ALOGI("Initialized successfully");
-    viva->inited = 1;
+    front->inited = 1;
 }
 
-static int boostpulse_open(struct viva_power_module *viva)
+static int boostpulse_open(struct front_power_module *front)
 {
     char buf[80];
 
-    pthread_mutex_lock(&viva->lock);
+    pthread_mutex_lock(&front->lock);
 
-    if (viva->boostpulse_fd < 0) {
-        viva->boostpulse_fd = open(BOOSTPULSE_PATH, O_WRONLY);
+    if (front->boostpulse_fd < 0) {
+        front->boostpulse_fd = open(BOOSTPULSE_PATH, O_WRONLY);
 
-        if (viva->boostpulse_fd < 0) {
-            if (!viva->boostpulse_warned) {
+        if (front->boostpulse_fd < 0) {
+            if (!front->boostpulse_warned) {
                 strerror_r(errno, buf, sizeof(buf));
                 ALOGE("Error opening %s: %s\n", BOOSTPULSE_PATH, buf);
-                viva->boostpulse_warned = 1;
+                front->boostpulse_warned = 1;
             }
         }
     }
 
-    pthread_mutex_unlock(&viva->lock);
-    return viva->boostpulse_fd;
+    pthread_mutex_unlock(&front->lock);
+    return front->boostpulse_fd;
 }
 
-static void viva_power_set_interactive(struct power_module *module,
+static void front_power_set_interactive(struct power_module *module,
                                                int on)
 {
-    struct viva_power_module *viva =
-                                   (struct viva_power_module *) module;
+    struct front_power_module *front =
+                                   (struct front_power_module *) module;
 
-    if (!viva->inited) {
+    if (!front->inited) {
         return;
     }
 
@@ -188,22 +188,22 @@ static void viva_power_set_interactive(struct power_module *module,
 //    sysfs_write(CPUFREQ_CPU0 "scaling_max_freq", on ? max_freq : nom_freq);
 }
 
-static void viva_power_hint(struct power_module *module,
+static void front_power_hint(struct power_module *module,
                                     power_hint_t hint, void *data)
 {
-    struct viva_power_module *viva =
-            (struct viva_power_module *) module;
+    struct front_power_module *front =
+            (struct front_power_module *) module;
     char buf[80];
     int len;
 
-    if (!viva->inited) {
+    if (!front->inited) {
         return;
     }
 
     switch (hint) {
     case POWER_HINT_INTERACTION:
-        if (boostpulse_open(viva) >= 0) {
-            len = write(viva->boostpulse_fd, "1", 1);
+        if (boostpulse_open(front) >= 0) {
+            len = write(front->boostpulse_fd, "1", 1);
 
             if (len < 0) {
                 strerror_r(errno, buf, sizeof(buf));
@@ -224,21 +224,21 @@ static struct hw_module_methods_t power_module_methods = {
     .open = NULL,
 };
 
-struct viva_power_module HAL_MODULE_INFO_SYM = {
+struct front_power_module HAL_MODULE_INFO_SYM = {
     .base = {
         .common = {
             .tag = HARDWARE_MODULE_TAG,
             .module_api_version = POWER_MODULE_API_VERSION_0_2,
             .hal_api_version = HARDWARE_HAL_API_VERSION,
             .id = POWER_HARDWARE_MODULE_ID,
-            .name = "U9200 Power HAL",
+            .name = "U9500 Power HAL",
             .author = "The Android Open Source Project",
             .methods = &power_module_methods,
         },
 
-       .init = viva_power_init,
-       .setInteractive = viva_power_set_interactive,
-       .powerHint = viva_power_hint,
+       .init = front_power_init,
+       .setInteractive = front_power_set_interactive,
+       .powerHint = front_power_hint,
     },
 
     .lock = PTHREAD_MUTEX_INITIALIZER,

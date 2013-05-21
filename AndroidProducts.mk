@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_viva.mk
+    $(LOCAL_DIR)/full_front.mk

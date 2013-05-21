@@ -1,6 +1,6 @@
 #!/bin/sh
 VENDOR=huawei
-DEVICE=viva
+DEVICE=front
 OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
 

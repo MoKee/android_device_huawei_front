@@ -1,4 +1,4 @@
-import init.viva.usb.rc
+import init.front.usb.rc
 
 on early-init
 
@@ -305,7 +305,7 @@ on fs
     write /sys/class/android_usb/android0/enable 1
 
 # add symlink for nxp noise-supression
-    symlink /vendor/etc/nxp_viva /data/nxp
+    symlink /vendor/etc/nxp_front /data/nxp
 
 
 # /* DTS2011081605546 y00185015 Added begin for xgold-ril configuration  */
