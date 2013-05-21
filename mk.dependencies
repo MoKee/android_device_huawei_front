@@ -1,0 +1,7 @@
+[
+ {
+   "repository": "MoKee/android_vendor_huawei_front",
+   "target_path": "vendor/huawei/front",
+   "branch": "jb-mr1_mkt"
+ }
+]
